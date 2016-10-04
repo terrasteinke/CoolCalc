@@ -179,15 +179,25 @@
             android:layout_height="match_parent"
             android:weightSum="2">
 
-            <Button
-                android:text="clear"
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/button14"
-                android:layout_weight="1"
-                android:background="#00ffffff"
-                android:textColor="#000000"
-                android:textSize="30sp" />
+                android:layout_weight="1">
+
+                <Button
+                    android:text="clear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/button14"
+                    android:layout_weight="1"
+                    android:background="#02e6c8"
+                    android:textColor="@android:color/white"
+                    android:textSize="25sp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginStart="20dp" />
+            </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -217,4 +227,15 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/equal"
+        android:id="@+id/imageButton7"
+        android:background="#00ffffff"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:paddingTop="105dp"
+        android:paddingRight="20dp" />
 </RelativeLayout>
