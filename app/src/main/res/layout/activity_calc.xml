@@ -73,12 +73,14 @@
             <ImageButton
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/divide"
+                android:src="@drawable/divide"
                 android:id="@+id/imageButton"
                 android:layout_weight="1"
                 android:background="#00ffffff" />
 
         </LinearLayout>
+
+<!--          Drawables for ImageButton were not showing up when running app, so I changed the default code for the ImageButton from "app:srcCompat" to "android:src" and was able to resolve the issue.  -->
 
         <LinearLayout
             android:orientation="horizontal"
@@ -119,7 +121,7 @@
             <ImageButton
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/multiply"
+                android:src="@drawable/multiply"
                 android:id="@+id/imageButton2"
                 android:layout_weight="1"
                 android:background="#ffffff" />
@@ -164,7 +166,7 @@
             <ImageButton
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/subtract"
+                android:src="@drawable/subtract"
                 android:id="@+id/imageButton2"
                 android:layout_weight="1"
                 android:background="#ffffff" />
@@ -207,9 +209,10 @@
                 <ImageButton
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:srcCompat="@drawable/add"
+                    android:src="@drawable/add"
                     android:id="@+id/imageButton6"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:background="#00ffffff" />
             </LinearLayout>
         </LinearLayout>
 
