@@ -13,18 +13,17 @@ import org.w3c.dom.Text;
 
 public class CalcActivity extends Activity {
 
-    TextView resultTxt;
+    TextView resultsView;
 
     public enum Operation {
         ADD, SUBTRACT, DIVIDE, MULTIPLY, EQUAL
     }
 
-    Operation currentOperation;
-    int result = 0;
-
     String runningNumber = "";
     String leftValueStr = "";
     String rightValueStr = "";
+    Operation currentOperation;
+    int result = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +49,8 @@ public class CalcActivity extends Activity {
         ImageButton subtractBtn = (ImageButton)findViewById(R.id.subtractBtn);
         ImageButton addBtn = (ImageButton)findViewById(R.id.addBtn);
 
-        resultTxt = (TextView)findViewById(R.id.resultTxt);
-        resultTxt.setText("");
+        resultsView = (TextView)findViewById(R.id.resultTxt);
+        resultsView.setText("");
 
         oneBtn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -116,12 +115,6 @@ public class CalcActivity extends Activity {
         clearBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                leftValueStr = "0";
-                rightValueStr = "";
-                result = 0;
-                runningNumber = "";
-                currentOperation = null;
-                resultTxt.setText("0");
             }
         });
         equalsBtn.setOnClickListener(new View.OnClickListener(){
@@ -157,45 +150,44 @@ public class CalcActivity extends Activity {
 
     }
 
-        void processOperation(Operation operation) {
-            if (currentOperation != null) {
+    void processOperation(Operation operation) {
+        if (currentOperation != null) {
 
-                if (runningNumber != "") {
-                    rightValueStr = runningNumber;
-                    runningNumber = "";
+            if (runningNumber != "") {
+                rightValueStr = runningNumber;
+                runningNumber = "";
 
-                    switch (currentOperation) {
-                        case ADD:
-                            result = Integer.parseInt(leftValueStr) + Integer.parseInt(rightValueStr);
-                            break;
-                        case SUBTRACT:
-                            result = Integer.parseInt(leftValueStr) - Integer.parseInt(rightValueStr);
-                            break;
-                        case MULTIPLY:
-                            result = Integer.parseInt(leftValueStr) * Integer.parseInt(rightValueStr);
-                            break;
-                        case DIVIDE:
-                            result = Integer.parseInt(leftValueStr) / Integer.parseInt(rightValueStr);
-                            break;
-                    }
-
-                    leftValueStr = String.valueOf(result);
-                    resultTxt.setText(leftValueStr);
-
-                } else {
-                    leftValueStr = runningNumber;
-                    runningNumber = "";
+                switch (currentOperation) {
+                    case ADD:
+                        result = Integer.parseInt(leftValueStr) + Integer.parseInt(rightValueStr);
+                        break;
+                    case SUBTRACT:
+                        result = Integer.parseInt(leftValueStr) - Integer.parseInt(rightValueStr);
+                        break;
+                    case MULTIPLY:
+                        result = Integer.parseInt(leftValueStr) * Integer.parseInt(rightValueStr);
+                        break;
+                    case DIVIDE:
+                        result = Integer.parseInt(leftValueStr) / Integer.parseInt(rightValueStr);
+                        break;
                 }
+
+                leftValueStr = String.valueOf(result);
+                resultsView.setText(leftValueStr);
             }
 
-            currentOperation = operation;
-
+        } else {
+            leftValueStr = runningNumber;
+            runningNumber = "";
         }
 
-        void numberPressed(int number) {
-            runningNumber += String.valueOf(number);
-            resultTxt.setText(runningNumber);
+        currentOperation = operation;
 
-        }
+    }
+
+    void numberPressed(int number) {
+        runningNumber += String.valueOf(number);
+        resultsView.setText(runningNumber);
+    }
 
 }
