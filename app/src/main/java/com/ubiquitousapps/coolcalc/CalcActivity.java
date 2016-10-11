@@ -115,6 +115,13 @@ public class CalcActivity extends Activity {
         clearBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                leftValueStr = "";
+                rightValueStr = "";
+                result = 0;
+                runningNumber = "";
+                currentOperation = null;
+                resultsView.setText("0");
+
             }
         });
         equalsBtn.setOnClickListener(new View.OnClickListener(){
