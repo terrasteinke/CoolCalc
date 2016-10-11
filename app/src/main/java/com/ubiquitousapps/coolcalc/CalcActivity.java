@@ -116,43 +116,42 @@ public class CalcActivity extends Activity {
         clearBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
-            }
-        });
-        clearBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-
+                leftValueStr = "0";
+                rightValueStr = "";
+                result = 0;
+                runningNumber = "";
+                currentOperation = null;
+                resultTxt.setText("0");
             }
         });
         equalsBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
+                processOperation(Operation.EQUAL);
             }
         });
         multiplyBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
+                processOperation(Operation.MULTIPLY);
             }
         });
         divideBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
+                processOperation(Operation.DIVIDE);
             }
         });
         addBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
+                processOperation(Operation.ADD);
             }
         });
         subtractBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
+                processOperation(Operation.SUBTRACT);
             }
         });
 
@@ -160,7 +159,8 @@ public class CalcActivity extends Activity {
 
         void processOperation(Operation operation) {
             if (currentOperation != null) {
-                if (runningNumber != ""){
+
+                if (runningNumber != "") {
                     rightValueStr = runningNumber;
                     runningNumber = "";
 
@@ -178,13 +178,24 @@ public class CalcActivity extends Activity {
                             result = Integer.parseInt(leftValueStr) / Integer.parseInt(rightValueStr);
                             break;
                     }
+
+                    leftValueStr = String.valueOf(result);
+                    resultTxt.setText(leftValueStr);
+
+                } else {
+                    leftValueStr = runningNumber;
+                    runningNumber = "";
                 }
             }
+
+            currentOperation = operation;
+
         }
 
         void numberPressed(int number) {
             runningNumber += String.valueOf(number);
             resultTxt.setText(runningNumber);
+
         }
 
 }
