@@ -10,7 +10,21 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+
 public class CalcActivity extends Activity {
+
+    TextView resultTxt;
+
+    public enum Operation {
+        ADD, SUBTRACT, DIVIDE, MULTIPLY, EQUAL
+    }
+
+    Operation currentOperation;
+    int result = 0;
+
+    String runningNumber = "";
+    String leftValueStr = "";
+    String rightValueStr = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,66 +50,67 @@ public class CalcActivity extends Activity {
         ImageButton subtractBtn = (ImageButton)findViewById(R.id.subtractBtn);
         ImageButton addBtn = (ImageButton)findViewById(R.id.addBtn);
 
-        TextView resultTxt = (TextView)findViewById(R.id.resultTxt);
+        resultTxt = (TextView)findViewById(R.id.resultTxt);
+        resultTxt.setText("");
 
         oneBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
+                numberPressed(1);
             }
         });
         twoBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
+                numberPressed(2);
             }
         });
         threeBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
+                numberPressed(3);
             }
         });
         fourBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
+                numberPressed(4);
             }
         });
         fiveBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
+                numberPressed(5);
             }
         });
         sixBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
+                numberPressed(6);
             }
         });
         sevenBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
+                numberPressed(7);
             }
         });
         eightBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
+                numberPressed(8);
             }
         });
         nineBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
+                numberPressed(9);
             }
         });
         zeroBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
+                numberPressed(0);
             }
         });
         clearBtn.setOnClickListener(new View.OnClickListener(){
@@ -140,6 +155,36 @@ public class CalcActivity extends Activity {
 
             }
         });
-        
+
     }
+
+        void processOperation(Operation operation) {
+            if (currentOperation != null) {
+                if (runningNumber != ""){
+                    rightValueStr = runningNumber;
+                    runningNumber = "";
+
+                    switch (currentOperation) {
+                        case ADD:
+                            result = Integer.parseInt(leftValueStr) + Integer.parseInt(rightValueStr);
+                            break;
+                        case SUBTRACT:
+                            result = Integer.parseInt(leftValueStr) - Integer.parseInt(rightValueStr);
+                            break;
+                        case MULTIPLY:
+                            result = Integer.parseInt(leftValueStr) * Integer.parseInt(rightValueStr);
+                            break;
+                        case DIVIDE:
+                            result = Integer.parseInt(leftValueStr) / Integer.parseInt(rightValueStr);
+                            break;
+                    }
+                }
+            }
+        }
+
+        void numberPressed(int number) {
+            runningNumber += String.valueOf(number);
+            resultTxt.setText(runningNumber);
+        }
+
 }
